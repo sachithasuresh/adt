@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,600' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Armata" rel="stylesheet"> 
+
+
+	<link rel="stylesheet" href="/reset.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="/style.css"> <!-- Resource style -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="/modernizr.js"></script> <!-- Modernizr -->
+	<link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet"> 
+  	
+	<title>RTO</title>
+</head>
+<body>
+	<header class="cd-main-header">
+		<h1 class="deepshadow">WELCOME TO RTO MAIN PAGE</h1>
+		<hr>
+	</header>
+
+	<ul class="cd-pricing">
+		<li>
+			<header class="cd-pricing-header">
+				<h2>Sign In</h2>
+			</header> <!-- .cd-pricing-header -->
+
+			<div class="cd-pricing-features" style="height: 92%;padding-left:10%;padding-right:10%;">
+				<em><img class="icons" src="/login.png"></em>
+			</div> <!-- .cd-pricing-features -->
+
+			<footer class="cd-pricing-footer">
+				<a href="#0" onclick="change_content(1);">Select</a>
+			</footer> <!-- .cd-pricing-footer -->
+		</li>
+		
+		<li>
+			<header class="cd-pricing-header">
+				<h2>Sign Up</h2>
+			</header> <!-- .cd-pricing-header -->
+
+			<div class="cd-pricing-features">
+				<em><img class="icons" src="/signup.png" style></em>
+			</div> <!-- .cd-pricing-features -->
+
+			<footer class="cd-pricing-footer">
+				<a href="/contact" onclick="change_content(2);">Select</a>
+			</footer> <!-- .cd-pricing-footer -->
+		</li>
+
+		<li>
+			<header class="cd-pricing-header">
+				<h2>Contacts</h2>
+			</header> <!-- .cd-pricing-header -->
+
+			<div class="cd-pricing-features">
+				<em><img class="icons" src="/contacts.png" style="padding-bottom:3%;padding-top: 0"></em>
+			</div> <!-- .cd-pricing-features -->
+
+			<footer class="cd-pricing-footer">
+				<a href="#" onclick="change_content(3)">Select</a>
+			</footer> <!-- .cd-pricing-footer -->
+		</li>
+	</ul> <!-- .cd-pricing -->
+
+	<div class="cd-form">
+		
+		<div class="cd-plan-info">
+			<!-- content will be loaded using jQuery - according to the selected plan -->
+		</div>
+
+		<div class="cd-more-info">
+			<h3>Need help?</h3>
+			<p>Contact the nearest RTO for further information</p>
+		</div>
+
+		<div id="side-content">
+		</div>
+	</div> <!-- .cd-form -->
+	
+	<div class="cd-overlay"></div> <!-- shadow layer -->
+<script src="/jquery-2.1.4.js"></script>
+<script src="/velocity.min.js"></script>
+<script src="/main.js"></script> <!-- Resource jQuery -->
+<script type="text/javascript">
+	function change_content(choice){
+		if(choice==1){
+			document.getElementById("side-content").innerHTML='<form method="POST" action="/loggedin"><fieldset><legend>Enter Details</legend><p class="half-width" style="margin-top:2%;margin-left: 39%;"><label style="padding-left: 14%;">Admin Type</label><label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</label><b><span class="cd-select"><select name="is_admin" id="card-expiry-month" style="width:12vw;text-align: center;" class="text-style"><option class="text-style">Admin</option><option class="text-style">User</option></select></span></b></p><br><div style="padding-left: 25%;padding-top: 12%;width: 80%;"><label for="userName" style="padding-left: 40%;">Email</label><input type="email" id="userName" name="email" required></div><div style="padding-left: 25%;width: 50%;width: 80%;"><label for="userEmail" style="padding-left: 40%;">Password</label><input type="password" id="userEmail" name="password" required></div></fieldset><fieldset><div><input type="submit" value="Login" style="margin-left: 45%;float:left;"></div></fieldset><fieldset><legend>Important Note</legend><label style="font-size: 25px;margin-top: 5%;color: #660066;">Do not share your login information with anyone!</label></fieldset></form><a href="#0" class="cd-close"></a>';
+
+
+		}
+		else if(choice==2){
+			document.getElementById("side-content").innerHTML='<form method="POST" action="/register"><fieldset><legend>Account Info</legend><div class="half-width"><label for="userName">First Name</label>'+
+'<input type="text" id="userName" name="fname" required></div><div class="half-width"><label for="userEmail">Last Name</label><input type="text" id="userEmail" name="lname" required></div><p class="half-width">'+
+'<label>&emsp;&emsp;Gender&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Blood '+'Group&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</label><b><span class="cd-select"><select name="gen" id="card-expiry-month" class="text-style"><option class="text-style">Male</option><option class="text-style">Female</option><option>Others</option></select></span><label>&emsp;&emsp;&emsp;&emsp;&emsp;</label>'+
+'<span class="cd-select"><select name="bgo" id="card-expiry-month" class="text-style"><option class="text-style">A+</option><option class="text-style">A-</option><option class="text-style">B+</option><option class="text-style">B-</option><option class="text-style">O+</option><option class="text-style">O-</option><option class="text-style">AB+</option><option class="text-style">AB-</option></select></span></b></p><p class="half-width"><label>Qualification&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</label><b><span class="cd-select"><select name="qual" id="card-expiry-month" class="text-style"><option value="SSLC" class="text-style">High School</option><option value="PUC" class="text-style">Pre University</option><option value="UG" class="text-style">Under Graduate</option><option value="PG" class="text-style">Post Graduate</option></select></span></b></p><div><label for="userPassword">Date</label><input type="date" id="userPassword" name="dob" class="text-style" placeholder="YYYY-MM-DD"></div><div><label for="userPassword">Address</label>'+
+'<input type="text" id="userPassword" name="address"></div><div class="half-width" id="one-more-width-change"><label for="userPassword">Email</label><input type="email" id="userPassword" name="email" required></div><div class="half-width"  id="width-change"><label for="userPasswordRepeat">Password</label><input type="password" id="userPasswordRepeat" name="password"></div></fieldset><fieldset><legend>I agree to all terms and conditions</legend><div class=half-width><ul class="cd-payment-gateways"><li><input type="checkbox" name="agree" id="paypal" value="yes" required><label for="paypal" style="font-size: 15px;">I agree</label></li></ul> <!-- .cd-payment-gateways --></div><div style="padding-top:3.5em;"><input type="submit" value="Get started"></div></fieldset></form><a href="#0" class="cd-close"></a>';
+		}
+		else{
+			document.getElementById("side-content").innerHTML='<div style="padding-left:28%;padding-top:30%;"><label style="font-size:15px;">Visit the page for all the contact information</label><a href="/contact" style="font-size:20px;">Click Here</a></div><a href="#0" class="cd-close"></a>';
+		}
+	}
+</script>
+<script>
+		<%-status%>
+</script>
+</body>
+</html>

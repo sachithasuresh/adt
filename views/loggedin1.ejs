@@ -1,0 +1,29 @@
+<h1>USER DETAILS</h1>
+alert("successful login");
+<p>name : <%=result[0].fname%>  <%=result[0].lname%></p>
+<p>email : <%=result[0].email%></p>
+<p>license number : <%=result[0].lno%></p>
+<p>address : <%=result[0].address%></p>
+<p>dob : <%=result[0].dob%></p>
+<p>blood group : <%=result[0].blood_group%></p>
+
+<p>
+<%for(var  i=0;i<result.length;i++){%>
+<%=result[i].vid%>
+<%}%>
+</p>
+<p>
+<%for(var  i=0;i<result.length;i++){%>
+<%=result[i].regno%>
+<%}%>
+</p>
+<p>
+<%for(var  i=0;i<result.length;i++){%>
+<%=result[i].idate%>
+<%}%>
+</p>
+<p>
+<%for(var  i=0;i<result.length;i++){%>
+<%=result[i].amount%>
+<%}%>
+</p>

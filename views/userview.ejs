@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>USER VIEW</title>
+    <link href="https://fonts.googleapis.com/css?family=Cinzel|Prompt" rel="stylesheet">
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="/userview.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+    <!-- Font Awesome JS -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <script>
+   var fines=[<%-fines%>];
+const date_part=''
+var main_content;
+var fine_part=date_part;
+function show_home_page(){
+    document.getElementById("alters").innerHTML=main_content;
+    let card = document.getElementsByClassName("card")[0];
+    card.addEventListener("click", function () {
+        card.classList.toggle("turn");
+    });
+
+}
+    for(let i=0;i<fines.length;i++){ 
+        fine_part+='<div class="fines"><p id="fine-amount"><span class="fine-titles">AMOUNT&emsp;&nbsp; :</span><span class="fine-content">Rs.'+fines[i].amount+'</span></p><p id="fine-location"><span class="fine-titles">LOCATION&ensp;&nbsp; :</span><span class="fine-content">'+fines[i].flocation+
+        '</span></p><p id="fine-date"><span class="fine-titles">DATE&emsp;&ensp;&nbsp; :</span><span class="fine-content">'+fines[i].date+
+        '</span></p><p id="fine-description"><span class="fine-titles">DESCRIPTION :</span><span class="fine-content">'+fines[i].desc+'</span></p></div>';
+    }
+function change_color(obj,choice){
+    var cur_ele=document.getElementById("activ");
+    if(cur_ele != null){
+    cur_ele.removeAttribute("id");
+    }
+    obj.setAttribute("id","activ");
+    if(choice==0){
+            show_home_page();
+
+    }
+    else{
+        document.getElementById("alters").innerHTML=fine_part;
+    }
+
+}
+
+    </script>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>USER VIEW</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                
+                <li class="active">
+                    <a href="#homeSubmenu"  id="activ"
+                    onclick="change_color(this,0)">Home</a>
+                </li>
+                <li>
+                    <a href="#" onclick="change_color(this,1)">Fines</a>
+                </li>
+                <li>
+                    <a href="/contact">Contact</a>
+                </li>
+                <li>
+                    <a href="/login" >LogOut</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+	            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+	                <div class="container-fluid spacing">
+	                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+	                        <i class="fas fa-align-left"></i>
+	                        <span>Toggle Sidebar</span>
+	                    </button>
+	                </div>
+	                <p id="name_disp">WELCOME <%=fcap%> <%=lcap%></p>
+	            </nav>
+	            
+			<div id="alters">
+			    <div id="strikes">
+                    <h1 style="text-align: center; font-family: 'Cinzel', serif;">Strikes</h1>
+                    <hr>
+				<img id="strike" src=<%-nos%>>
+				</div>
+		        <div class="main_container">
+					<div class="card">
+						<div class="front">
+						</div>
+						<div class="back">
+			                <div class="container">
+			                    <p id="dl"><span class="titles">DL No.</span> : <span class="content"><%=res[0].lno%></span></p>
+			                    <p id="issued"><span class="titles">DOI</span>: <span class="content"><%=issuedatetrim%></span></span></p>
+			                    <div id="rule_container">
+			                        <p id="rule" class="constants">FORM-7</p>
+			                        <p id="rule-detail" class="constants">[See Rule 16(2)]</p>
+			                    </div>
+			                    <p id="name"><span class="titles">NAME</span>: <span class="content"><%=res[0].fname%>  <%=res[0].lname%></span></p>
+			                    <p id="dob"><span class="titles">D.O.B</span>: <span class="content"><%=datetrim%></span></p>
+			                    <p id="bloodgp" ><span class="titles">B.G</span>: <span class="content"><%=res[0].blood_group%></span></p>
+			                    <img src="/sample_bg.jpg" alt="your photo" id="face">
+			                    <p id="validity"><span class="titles">VALID TILL</span> : <span class="content"><%=expdate%>(NT)</span></p>
+			                    <p id="auth" class="constants">VALID THROUGHOUT INDIA</p>
+			                    <p id="address"><span class="titles"></span>: <span class="content"><%=res[0].address%></span></p>
+			                        <img id="sign" src="/signature.png">
+			                </div>
+						</div>
+					</div>
+				</div>
+			</div>
+	    </div>
+    </div>
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+               window.onload=function() {
+        let card = document.getElementsByClassName("card")[0];
+    main_content=document.getElementById("alters").innerHTML;
+    card.addEventListener("click", function () {
+        card.classList.toggle("turn");
+
+    });
+};
+    </script>
+    <script>
+        sessionStorage.setItem('token',"Hello");
+        sessionStorage.setItem('token',"Hi");
+    </script>
+    <script>
+        <%-status%>
+    </script>
+
+</body>
+
+
+</html>

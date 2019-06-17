@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Admin VIEW</title>
+    <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="/adminview.css">
+    
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <script>
+    var values=[<%-infos%>];
+        var info=values[0];
+        
+        
+        
+        
+        
+        
+
+    </script>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>USER VIEW</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                
+                <li class="active">
+                    <a href="/issuelicense" aria-expanded="false" class="gf">Issue License</a>
+                </li>
+                <li>
+                    <a href="/registers" aria-expanded="false" class="gf">Register</a>
+                </li>
+                <li>
+                    <a href="/fine" aria-expanded="false" class="gf">Fine</a>
+                </li>
+                <li>
+                    <a href="/update" aria-expanded="false" class="gf">Update</a>
+                </li>
+                <li>
+                    <a href="/delete" aria-expanded="false" class="gf">Delete</a>
+                </li>
+                <li>
+                    <a href="/stat" aria-expanded="false" id="activ" class="gf">Statistics</a>
+                </li>
+                 <li>
+                    <a href="/login" aria-expanded="false" class="gf">Logout</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+    <form>
+        <div class="table_center">
+       <div class="drop-down">
+         <div id="dropDown" class="drop-down__button">
+           <span class="drop-down__name">REPORT VISUALIZATION</span>
+         </div>
+         
+         <div class="drop-down__menu-box">
+           <ul class="drop-down__menu">
+             <li data-name="profile" class="drop-down__item gf" onclick="create_chart(1)">Fine collected every year </li>
+             <li data-name="dashboard" class="drop-down__item gf" onclick="create_chart(2)">Vehicles registered every year</li>
+             <li data-name="activity" class="drop-down__item gf" onclick="create_chart(3)">Fine collected in every city</li>
+           </ul>
+         </div>
+       </div>
+</div>
+</form>
+        <canvas id="pie-chart"></canvas>        
+	    </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script type="text/javascript" src="admin_view.js"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+</script>
+<script type="text/javascript">
+        function create_chart(choice){
+            document.getElementById('dropDown').click();
+            if(choice==1){
+                info=values[0];
+                console.log(1);
+            }
+            else if(choice==2){
+                info=values[1];
+                console.log(2);
+            }
+            else{
+                info=values[2];
+                console.log(3);
+            }
+        new Chart(document.getElementById("pie-chart"), {
+    type: 'pie',
+    data: {
+      labels: info.labels,
+      datasets: [{
+        label: "Population (millions)",
+        backgroundColor: info.colors,
+        data: info.values
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: info.title,
+        fontSize: 25
+      },
+      legend:{
+        display: true,
+        position: "bottom",
+        labels: {
+            fontColor: "#333",
+            fontSize: 20
+        }
+      },
+      tooltips: {
+        bodyFontSize: 25,
+        cornerRadius: 7,
+        xPadding: 15,
+        yPadding: 10
+      }
+    }
+});
+}
+
+create_chart(info);
+$(document).ready(function(){
+  $('#dropDown').click(function(){
+    $('.drop-down').toggleClass('drop-down--active');
+  });
+});
+    </script>
+    <script>
+		<%-status%>
+	</script>
+</body>
+
+</html>
