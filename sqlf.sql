@@ -2,7 +2,7 @@ create table user(
 emaild varchar(30) primary key,
 fname varchar(20),
 lname varchar(20),
-gender varchar(1),
+gender varchar(10),
 address varchar(255),
 dob date,
 blood_group varchar(3),

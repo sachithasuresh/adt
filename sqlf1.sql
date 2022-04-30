@@ -1,10 +1,8 @@
 create table users(
 uid int primary key auto_increment,
-email varchar(50) unique,
-password varchar(20),
 fname varchar(20),
 lname varchar(20),
-gender varchar(1),
+gender varchar(10),
 address varchar(255),
 dob date,
 blood_group varchar(3),

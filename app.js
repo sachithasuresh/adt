@@ -14,8 +14,10 @@ app.use(express.static('static'));
 //var popup = require('popups');
 var connection = mysql.createConnection({
   host     : 'localhost',
-  user     : 'darshan7575',  //your username
-  database : 'final'         //the name of your db
+  user     : 'vrushab',  //your username
+  password: 'aman@123',
+  database : 'adt',
+  multipleStatements: true        //the name of your db
 });
 
 var status;
@@ -63,6 +65,13 @@ app.get("/delete",function(req,res){
 
 app.get("/issuelicense",function(req,res){
    res.render("adminview1",{status:""}); 
+});
+
+app.get("/details",function(req,res){
+ connection.query("select users.fname,users.lname,login.email,license.lno,users.address,users.dob,users.blood_group,users.nos,registers.regno,license.idate,vehicle.vid,fine.amount from users inner join login on users.uid = login.uid left join license on users.uid = license.uid left join vehicle on users.uid = vehicle.uid left join registers on vehicle.vid = registers.vid left join fine on vehicle.vid = fine.vid where login.is_admin = 'User';",function(err1,result){  
+console.log(result)
+res.render('details',{res:result});
+});
 });
 
 app.get("/stat",function(req,res){
@@ -230,9 +239,9 @@ app.post('/registered', function(req,res){
  console.log(vid)
 
  var newreg={
-   vid:vid,
    regno:req.body.regno,
    location:req.body.loc,
+   vid:vid,
    reg_date:req.body.reg_date
  };
 
