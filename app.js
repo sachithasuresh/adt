@@ -506,7 +506,7 @@ connection.query('INSERT INTO login SET ?',logger,function(err,result5){
 //closing of outer select query to not lose scope of userid
 app.post("/fined",function(req, res) {
 })
-app.listen(8080,function()
+app.listen(process.env.PORT,function()
 {
-  console.log("Server running on 8080!");
+  console.log(`Server running on :${process.env.PORT}!`);
 });
